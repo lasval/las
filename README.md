@@ -31,7 +31,7 @@ $ sudo usermod -aG docker $USER # 현재 접속중인 사용자에게 권한주�
 $ sudo usermod -aG docker your-user # your-user 사용자에게 권한주기
 ```
 
-### **Docker compose 설치** ###
+### Docker compose 설치 ###
 
 아래 명령어를 통해 docker compose설정 버전을 바꾸고 싶으면 1.27.4 부분을 바꾸면 됨
 
