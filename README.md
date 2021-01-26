@@ -6,6 +6,7 @@ This README would normally document whatever steps are necessary to get your app
 
 ## Quick summary ##
 이 레포지토리는 Docker를 이용한 Django 프로젝트의 스타터 킷 예시 입니다.
+> Production모드에서는 nginx + gunicorn을 사용하고, Dev모드에서는 django 개발용 서버를 사용 합니다.
 
 ## How do I get set up? ##
 
