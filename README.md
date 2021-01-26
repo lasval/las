@@ -17,19 +17,11 @@ This README would normally document whatever steps are necessary to get your app
 
   * docker 명령어를 이용한 실행 
 
-    * Production 모드로 이미지 생성 및 실행: 
-
-      ```bash
-      $ docker-compose up -d --build 
-      ```
+    * Production 모드로 이미지 생성 및 실행: $ docker-compose up -d --build 
 
       
 
-    * Dev 모드로 이미지 생성 및 실행: 
-
-      ```bash
-      $ docker-compose -f docker-compose-dev.yml up --build
-      ```
+    * Dev 모드로 이미지 생성 및 실행: $ docker-compose -f docker-compose-dev.yml up --build
 
       
 
