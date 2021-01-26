@@ -1,6 +1,6 @@
 # Quick summary #
 이 레포지토리는 Docker를 이용한 Django 프로젝트의 스타터 킷 예시 입니다.
-> Production모드에서는 nginx + gunicorn을 사용하고, Dev모드에서는 django 개발용 서버를 사용 합니다.
+Production모드에서는 nginx + gunicorn을 사용하고, Dev모드에서는 django 개발용 서버를 사용 합니다.
 
 
 -----
@@ -12,9 +12,8 @@
 Docker 관련 설치 가이드들은 Notion에서도 확인하실 수 있습니다.
 [Notion 개발 설치 가이드 모음](https://www.notion.so/3c87d75afd5348e5b1b90cc5b0e14a00)
 
-## Docker 설치 ##
-
-> Ubuntu에 설치한다고 가정 (가이드 작성 당시 Ubuntu 20.04.1 LTS 버전)
+## **Docker 설치** ##
+Ubuntu에 설치한다고 가정 (가이드 작성 당시 Ubuntu 20.04.1 LTS 버전)
 
 ### Docker 설치 및 기본 설정 ###
 
@@ -63,7 +62,7 @@ docker compose 설치 관련 문제가 생기면 도커 공식 홈페이지 참�
 
 
 
-## .env파일 해당 프로젝트 Root Directory에 저장 (.env.prod & .env.dev) ##
+## **.env파일 해당 프로젝트 Root Directory에 저장 (.env.prod & .env.dev)** ##
 
 <.env.prod 파일 형태>
 
@@ -113,7 +112,7 @@ DB_PORT=5432
 
 
 
-## docker 명령어를 이용한 실행 ##
+## **Docker 명령어를 이용한 실행** ##
 Production 모드로 이미지 생성 및 실행: 
 
 ```bash
