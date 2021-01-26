@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+    web:
+        build:
+            context: ./django
+            dockerfile: Dockerfile-dev
+        image: tonline/django-dev
+        container_name: tonline-django-dev
+        env_file:
+            - ./.env.dev
+        command: python manage.py runserver 0.0.0.0:8000 
+        volumes:
+            - ./django:/usr/src/app/
+        ports:
+            - 8000:8000
+

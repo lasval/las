@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+    web:
+        build:
+            context: ./django
+            dockerfile: Dockerfile
+        image: tonline/django
+        env_file:
+            - ./.env.prod 
+        command: gunicorn tonline_api.wsgi:application --bind 0.0.0.0:8000 --workers 3
+        volumes:
+            - static_volume:/home/app/static/
+        expose:
+            - 8000
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        image: tonline/nginx
+        volumes:
+            - static_volume:/home/app/static/
+        ports:
+            - 80:80
+        depends_on:
+            - web
+
+volumes:
+    static_volume:
