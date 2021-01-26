@@ -4,14 +4,64 @@ This README would normally document whatever steps are necessary to get your app
 
 ------
 
-## Quick summary ##
+# Quick summary #
 이 레포지토리는 Docker를 이용한 Django 프로젝트의 스타터 킷 예시 입니다.
 > Production모드에서는 nginx + gunicorn을 사용하고, Dev모드에서는 django 개발용 서버를 사용 합니다.
 
-## How do I get set up? ##
+# How do I get set up? #
 
-#### Docker 설치 ####
-.env파일 해당 프로젝트 Root Directory에 저장 (.env.prod & .env.dev)
+## Docker 설치 ##
+
+> Ubuntu에 설치한다고 가정 (가이드 작성 당시 Ubuntu 20.04.1 LTS 버전)
+
+### Docker 설치 및 기본 설정 ###
+
+**Docker가 설치되어 있지 않다면 아래 명령어를 통해 Docker 설치**
+
+```bash
+$ curl -fsSL https://get.docker.com/ | sudo sh
+```
+
+**sudo 없이 사용하기**
+
+docker는 기본적으로 root권한이 필요합니다. root가 아닌 사용자가 sudo없이 사용하려면 해당 사용자를 `docker`그룹에 추가합니다.
+
+```bash
+$ sudo usermod -aG docker $USER # 현재 접속중인 사용자에게 권한주기
+$ sudo usermod -aG docker your-user # your-user 사용자에게 권한주기
+```
+
+### **Docker compose 설치** ###
+
+아래 명령어를 통해 docker compose설정 버전을 바꾸고 싶으면 1.27.4 부분을 바꾸면 됨
+
+```bash
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+권한 설정
+
+```bash
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+
+버전확인 명령어로 docker compose 정상 설치 확인
+
+```bash
+$ docker-compose --version
+```
+
+docker compose 설치 관련 문제가 생기면 도커 공식 홈페이지 참조
+
+[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
+
+
+-----
+
+
+
+
+## .env파일 해당 프로젝트 Root Directory에 저장 (.env.prod & .env.dev) ##
 
 <.env.prod 파일 형태>
 
@@ -56,7 +106,12 @@ DB_PORT=5432
 ```
 
 
-#### docker 명령어를 이용한 실행 ####
+-----
+
+
+
+
+## docker 명령어를 이용한 실행 ##
 Production 모드로 이미지 생성 및 실행: 
 
 ```bash
@@ -69,5 +124,16 @@ Dev 모드로 이미지 생성 및 실행:
 $ docker-compose -f docker-compose-dev.yml up --build
 ```
 
+
 ------
+
+
+
+
 [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+
+
+
+
+
