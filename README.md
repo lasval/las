@@ -1,14 +1,16 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-------
-
 # Quick summary #
 이 레포지토리는 Docker를 이용한 Django 프로젝트의 스타터 킷 예시 입니다.
 > Production모드에서는 nginx + gunicorn을 사용하고, Dev모드에서는 django 개발용 서버를 사용 합니다.
 
+
+-----
+
+
+
+
 # How do I get set up? #
+Docker 관련 설치 가이드들은 Notion에서도 확인하실 수 있습니다.
+[Notion 개발 설치 가이드 모음](https://www.notion.so/3c87d75afd5348e5b1b90cc5b0e14a00)
 
 ## Docker 설치 ##
 
