@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +31,9 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 # ALLOWED_HOSTS
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
+# Django App들을 apps directory에 모아서 처리하기위해 아래 system path를 추가해줌
+sys.path.insert(0, os.path.join(BASE_DIR, 'tonline_api/apps'))
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,8 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # Packages installed by pip (3rd party apps)
     'rest_framework',
+    # Custom Apps
     'test_app',
 ]
 
@@ -112,7 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ko'
+LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'Asia/Seoul'
 
