@@ -5,6 +5,7 @@ from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
 from tonline_api.utils import StandardErrorResponse
 from .utils import (
@@ -15,8 +16,14 @@ from .utils import (
     validate_login,
     returnUserAuthFailedError,
 )
+from users import doc_schemas as ds
 
 
+@swagger_auto_schema(
+    method="post",
+    request_body=ds.LOGIN_REQUEST_BODY,
+    responses=ds.LOGIN_RESPONSE,
+)
 @api_view(["POST"])
 @permission_classes((permissions.AllowAny,))
 def login(request):
@@ -58,6 +65,11 @@ def login(request):
     return Response({"token": token})
 
 
+@swagger_auto_schema(
+    method="get",
+    request_body=ds.CURRENT_REQUEST_BODY,
+    responses=ds.CURRENT_RESPONSE,
+)
 @api_view(["GET"])
 @permission_classes((permissions.IsAuthenticated,))
 def current(request):
@@ -75,6 +87,11 @@ def current(request):
     )
 
 
+@swagger_auto_schema(
+    method="post",
+    request_body=ds.REGISTRATION_REQUEST_BODY,
+    responses=ds.REGISTRATION_RESPONSE,
+)
 @api_view(["POST"])
 @permission_classes((permissions.AllowAny,))
 def registration(request):
