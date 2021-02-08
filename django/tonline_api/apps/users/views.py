@@ -28,7 +28,7 @@ from users import doc_schemas as ds
 @permission_classes((permissions.AllowAny,))
 def login(request):
     """
-    post:타입별 커스텀 유저 로그인 API
+    post:커스텀 유저 로그인 API
 
     ---
     ## API URL: `/users/login/`
@@ -96,7 +96,7 @@ def current(request):
 @permission_classes((permissions.AllowAny,))
 def registration(request):
     """
-    post: user_type별로 가입 처리를 하는 API
+    post: 유저 가입 처리를 하는 API
 
     ---
     ## API URL: `/users/registration/`
