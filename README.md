@@ -479,7 +479,7 @@ REGISTRATION_RESPONSE: Final = {
 }
 ```
 
-## **2) View에 decorator 및 주석 작성
+## **2) View에 decorator 및 주석 작성**
 
 decorator와 주석을 설정해주지 않아도 문서에서 리스팅은 되지만 내용은 없는 상태로 리스팅 됨.
 
@@ -537,7 +537,7 @@ def login(request):
 ```
 
 
-# **코드 스타일 통일을 위한 자동 lint & format
+# **코드 스타일 통일을 위한 자동 lint & format**
 
 여러명이 같이 작업을 할때 Python 코드 스타일을 PEP8에 맞게 구성하여 코드 품질을 향상시키기 위함.
 
