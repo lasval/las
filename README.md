@@ -48,7 +48,7 @@ Docker Compose를 이용하여 한번에 django 컨테이너와 nginx 컨테이�
 - docker-compose.yml: Production 모드로 빌드/실행할 때 사용하는 `docker-compose`파일
     - 실행 예시: $ docker-compose up -d —build
     - docker-compose.yml은 docker-compose기본 파일이므로 따로 명령어에서 지정해주지 않아도 됨
-
+- init-with-renaming.sh: 초기 설정시 폴더명과 특정 앱 명칭 및 코드상에서의 내용을 일괄로 변경하기 위한 스크립트 (starterkit -> gymt)
 
 
 # 실행/개발 전 사전 준비사항 #
@@ -108,9 +108,15 @@ git clone https://해당 프로젝트 접근 가능한 빗버킷 계정@bitbucke
 -----
 
 
+## **3. init-with-renaming.sh을 실행하여 메인 앱 폴더 및 소스코드내 명칭 일괄 변경 (starterkit -> 프로젝트명칭)** ##
+해당 프로젝트는 앱 명칭 및 그에 다른 소스코드내 명칭들이 모두 startkit or starterkit_api로 되어있기 때문에
+이를 일괄로 변경시키는 스크립트를 실행하여 한번에 처리 (ex. starterkit -> gymt)
+
+-----
 
 
-## **3. 필요한 환경변수 파일 생성 및 저장(.env.prod & .env.dev & /django/.env)** ##
+
+## **4. 필요한 환경변수 파일 생성 및 저장(.env.prod & .env.dev & /django/.env)** ##
 
 .env.prod: Docker Compose를 사용할 때 Production 모드의 환경변수로 사용할 파일
 
@@ -277,6 +283,8 @@ $ docker rmi 10a955570057
 ## **Docker를 사용하지 않고 가상환경으로 실행 (pipenv & runserver)** ##
 
 django 프로젝트 부분은 pipenv를 사용한 python 가상환경을 기준으로 작성되었음.
+VSCode를 이용할 때, python interpreter부분은 pipenv shell을 실행하여 생성된 위치를 지정하면 됨
+(ex. `~/.local/share/virtualenvs/django-Iohwxul1/bin/python`와 같은 형태로 생성되는 위치값 지정)
 
 `makemigrations`, `migrate`, `collectstatic` 명령어들을 실행하기 위해서는 현재 상태에서는 pipenv를 이용한 가상환경 상태에서 실행해야함
 
