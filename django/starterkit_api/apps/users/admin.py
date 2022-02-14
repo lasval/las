@@ -1,24 +1,24 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import CustomUser
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import User
+from .forms import UserCreationForm, UserChangeForm
 
 
-class CustomUserAdmin(BaseUserAdmin):
+class UserAdmin(BaseUserAdmin):
     """
-    CustomUserAdmin
+    UserAdmin
     """
 
     # The forms to add and change user instances
-    form = CustomUserChangeForm
-    add_form = CustomUserCreationForm
+    form = UserChangeForm
+    add_form = UserCreationForm
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     list_display = (
         "id",
-        "email",
+        "phone",
         "username",
         "is_staff",
         "is_superuser",
@@ -26,7 +26,7 @@ class CustomUserAdmin(BaseUserAdmin):
         "date_joined",
     )
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("phone", "password")}),
         ("Personal info", {"fields": ("username",)}),
         (
             "Permissions",
@@ -46,4 +46,4 @@ class CustomUserAdmin(BaseUserAdmin):
 
 
 # Register the new UserAdmin..
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(User, UserAdmin)

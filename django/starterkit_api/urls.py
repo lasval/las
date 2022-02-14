@@ -1,4 +1,4 @@
-"""tonline_api URL Configuration
+"""starterkit_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -21,15 +21,15 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="TOnline API",
+        title="starterkit API",
         default_version="v0.1.0",
         description="""
-        TOnline API 문서 페이지 입니다.
+        starterkit API 문서 페이지 입니다.
 
         view를 생성/수정할 때, 주석영역을 적절하게 추가/수정하여 문서를 만들어주세요.
         """,
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="test@gtest.com"),
+        contact=openapi.Contact(email="ethan@gymtinc.com"),
         license=openapi.License(name="BSD License"),
     ),
     validators=["flex"],
@@ -56,7 +56,7 @@ urlpatterns = [
         name="schema-redoc",
     ),
     # custom
-    path("admin/", admin.site.urls),
+    path("sekr3t-admin/", admin.site.urls),
     path("users/", include("users.urls")),
-    path("test_app/", include("test_app.urls")),
+    path("sample_app/", include("sample_app.urls")),
 ]

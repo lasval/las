@@ -311,13 +311,13 @@ Docker on Django 관련 자세한 가이드(추가로 알아야하는 명령어 
 기존 Django 관련 프로젝트에서는 Project 디렉토리와 App 디렉토리가 같은 depth에 있어 App이 늘어날 수록 Project 디렉토리와 App 디렉토리가 한눈에 구분되지 않음.
 
 따라서 아래와 같이 프로젝트 디렉토리 하위에 apps 디렉토리를 만들어 해당 디렉토리에 app 디렉토리가 모이도록 구성
-(apps/test_app , apps/users 참고)
+(apps/sample_app , apps/users 참고)
 
 ```bash
 .
 ├── __init__.py
 ├── apps
-│   ├── test_app
+│   ├── sample_app
 │   └── users
 ├── asgi.py
 ├── settings.py
@@ -331,7 +331,7 @@ Docker on Django 관련 자세한 가이드(추가로 알아야하는 명령어 
 ```python
 ...
 # Django App들을 apps directory에 모아서 처리하기위해 아래 system path를 추가해줌
-sys.path.insert(0, os.path.join(BASE_DIR, "tonline_api/apps"))
+sys.path.insert(0, os.path.join(BASE_DIR, "starterkit_api/apps"))
 ...
 ```
 
@@ -392,10 +392,10 @@ from typing import Final
 LOGIN_REQUEST_BODY: Final = openapi.Schema(
     type=openapi.TYPE_OBJECT,
     properties={
-        "email": openapi.Schema(
-            title="Email Address",
+        "phone": openapi.Schema(
+            title="Phone Number",
             type=openapi.TYPE_STRING,
-            description="`<= 254 characters`",
+            description="`<= 20 characters`",
         ),
         "password": openapi.Schema(
             title="Password",
@@ -403,7 +403,7 @@ LOGIN_REQUEST_BODY: Final = openapi.Schema(
             description="`8 <= & <= 128 characters`",
         ),
     },
-    required=["email", "password"],
+    required=["phone", "password"],
 )
 LOGIN_RESPONSE: Final = {
     200: openapi.Schema(
@@ -424,10 +424,10 @@ CURRENT_RESPONSE: Final = {
     200: openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
-            "email": openapi.Schema(
-                title="Email Address",
+            "phone": openapi.Schema(
+                title="Phone number",
                 type=openapi.TYPE_STRING,
-                description="`<= 254 characters`",
+                description="`<= 20 characters`",
             ),
             "username": openapi.Schema(
                 title="Username",
@@ -442,10 +442,10 @@ CURRENT_RESPONSE: Final = {
 REGISTRATION_REQUEST_BODY: Final = openapi.Schema(
     type=openapi.TYPE_OBJECT,
     properties={
-        "email": openapi.Schema(
-            title="Email Address",
+        "phone": openapi.Schema(
+            title="Phone Number",
             type=openapi.TYPE_STRING,
-            description="`<= 254 characters`",
+            description="`<= 20 characters`",
         ),
         "username": openapi.Schema(
             title="Username",
@@ -463,7 +463,7 @@ REGISTRATION_REQUEST_BODY: Final = openapi.Schema(
             description="`8 <= & <= 128 characters`",
         ),
     },
-    required=["email", "password1", "password2"],
+    required=["phone", "password1", "password2"],
 )
 REGISTRATION_RESPONSE: Final = {
     200: openapi.Schema(
@@ -530,7 +530,7 @@ def login(request):
     ---
     ## API URL: `/users/login/`
     """
-    email = request.data.get("email")
+    phone = request.data.get("phone")
     password = request.data.get("password")
 
 		... 하단 생략 ...

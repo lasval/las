@@ -5,8 +5,8 @@ services:
         build:
             context: ./django
             dockerfile: Dockerfile-dev
-        image: tonline/django-dev
-        container_name: tonline-django-dev
+        image: starterkit/django-dev
+        container_name: starterkit-django-dev
         env_file:
             - ./.env.dev
         command: python manage.py runserver 0.0.0.0:8000 

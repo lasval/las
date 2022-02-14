@@ -7,10 +7,10 @@ from rest_framework.response import Response
 
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny,))
-def test_app(request):
+def sample_app_view(request):
     """
     get:
-        - test_app
+        - sample_app_view
     """
 
     result = {"result": "HelloWorld!!"}

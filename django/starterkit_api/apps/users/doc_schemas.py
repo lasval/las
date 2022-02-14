@@ -13,10 +13,10 @@ from typing import Final
 LOGIN_REQUEST_BODY: Final = openapi.Schema(
     type=openapi.TYPE_OBJECT,
     properties={
-        "email": openapi.Schema(
-            title="Email Address",
+        "phone": openapi.Schema(
+            title="Phone Number",
             type=openapi.TYPE_STRING,
-            description="`<= 254 characters`",
+            description="`<= 20 characters`",
         ),
         "password": openapi.Schema(
             title="Password",
@@ -45,10 +45,10 @@ CURRENT_RESPONSE: Final = {
     200: openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
-            "email": openapi.Schema(
-                title="Email Address",
+            "phone": openapi.Schema(
+                title="Phone Number",
                 type=openapi.TYPE_STRING,
-                description="`<= 254 characters`",
+                description="`<= 20 characters`",
             ),
             "username": openapi.Schema(
                 title="Username",
@@ -63,10 +63,10 @@ CURRENT_RESPONSE: Final = {
 REGISTRATION_REQUEST_BODY: Final = openapi.Schema(
     type=openapi.TYPE_OBJECT,
     properties={
-        "email": openapi.Schema(
-            title="Email Address",
+        "phone": openapi.Schema(
+            title="Phone Number",
             type=openapi.TYPE_STRING,
-            description="`<= 254 characters`",
+            description="`<= 20 characters`",
         ),
         "username": openapi.Schema(
             title="Username",

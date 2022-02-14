@@ -1,6 +1,6 @@
 # users/utils.py
 from rest_framework import status
-from tonline_api.utils import StandardErrorResponse
+from starterkit_api.utils import StandardErrorResponse
 from typing import Optional, Final
 from django.contrib.auth.password_validation import (
     MinimumLengthValidator,
@@ -8,6 +8,7 @@ from django.contrib.auth.password_validation import (
     NumericPasswordValidator,
 )
 from django.core.validators import validate_email as django_validate_email
+import uuid
 
 
 class ValidationErrorStrs:
@@ -167,3 +168,42 @@ def validate_login(
 
     # 위의 모든 체크를 통과했다면 None을 리턴
     return None
+
+
+def is_user_code_exist(user_code):
+    """
+    user code가 이미 존재하는지 체크하는 함수
+    """
+    from .models import User
+
+    users = User.objects.filter(user_code=user_code)
+    if users.exists():
+        return True
+    else:
+        return False
+
+
+def generate_user_code(user_type):
+    """
+    유저 타입과 uuid를 이용해서 unique한 user code를 생성하는 함수
+    유저 초기 생성(createsuperuser 등)에서는 UserModel을 추가할 수 없기 떄문에
+    DB단의 중복체크 없이 생성한다.
+    """
+    uuid_str = uuid.uuid4().hex[:6].upper()
+    user_code = str(user_type) + uuid_str
+
+    return user_code
+
+
+def generate_unique_user_code(user_type):
+    """
+    유저 타입과 uuid를 이용해서 unique한 user code를 생성하는 함수
+    유저 타입 + uuid로 동일한 값이 나왔을 경우 (collision) 새로운 uuid를 구하여
+    유저 타입 + uuid값을 새로 만든다.
+    """
+    user_code = generate_user_code(user_type)
+
+    if is_user_code_exist(user_code) is True:
+        return generate_unique_user_code(user_type)
+    else:
+        return user_code

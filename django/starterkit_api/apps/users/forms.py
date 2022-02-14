@@ -3,14 +3,13 @@
 
 from django import forms
 from django.contrib.auth.forms import (
-    UserCreationForm,
-    UserChangeForm,
     ReadOnlyPasswordHashField,
 )
-from .models import CustomUser
+from .models import User
+from .utils import generate_unique_user_code
 
 
-class CustomUserCreationForm(forms.ModelForm):
+class UserCreationForm(forms.ModelForm):
     """
     A form for creating new users. Includes all the
     required fields, plus a repeated password.
@@ -22,8 +21,8 @@ class CustomUserCreationForm(forms.ModelForm):
     )
 
     class Meta:
-        model = CustomUser
-        fields = ("email",)
+        model = User
+        fields = ("phone", "user_type")
 
     def clean_password2(self):
         # Check the two password entries match
@@ -36,13 +35,15 @@ class CustomUserCreationForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
+        # Django admin을 통해 유저 생성시 user_code를 자동으로 추가시켜줌
+        user.user_code = generate_unique_user_code(user.user_type)
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
         return user
 
 
-class CustomUserChangeForm(forms.ModelForm):
+class UserChangeForm(forms.ModelForm):
     """
     A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
@@ -52,8 +53,8 @@ class CustomUserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = CustomUser
-        fields = ("email", "password", "is_active", "is_superuser")
+        model = User
+        fields = ("phone", "password", "is_active", "is_superuser")
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

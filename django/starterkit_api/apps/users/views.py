@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.db import IntegrityError
-from .models import CustomUser
+from .models import User
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
-from tonline_api.utils import StandardErrorResponse
+from starterkit_api.utils import StandardErrorResponse
 from .utils import (
     RegistrationValidationValues,
     LoginValidationValues,
@@ -33,7 +33,7 @@ def login(request):
     ---
     ## API URL: `/users/login/`
     """
-    email = request.data.get("email")
+    phone = request.data.get("phone")
     password = request.data.get("password")
 
     # Validation check
@@ -43,9 +43,9 @@ def login(request):
 
     # 유저 타입 체크가 완료되면 타입별로 유저 정보를 확인하여 로그인 처리
     try:
-        user = CustomUser.objects.get(email=email)
+        user = User.objects.get(phone=phone)
         is_password_valid = user.check_password(password)
-    except CustomUser.DoesNotExist:
+    except User.DoesNotExist:
         return returnUserAuthFailedError()
     else:
         if not is_password_valid:
@@ -81,7 +81,7 @@ def current(request):
     """
     return Response(
         {
-            "email": request.user.email,
+            "phone": request.user.phone,
             "username": request.user.username,
         }
     )
@@ -101,7 +101,7 @@ def registration(request):
     ---
     ## API URL: `/users/registration/`
     """
-    email = request.data.get("email")
+    phone = request.data.get("phone")
     username = request.data.get("username")  # 유저명은 None도 허용. 즉, optional
     password1 = request.data.get("password1")
     # password2 = request.data.get('password2')  # password2는 validation에서만 사용하므로 주석처리
@@ -114,7 +114,7 @@ def registration(request):
         return validation_result
 
     # Validation check를 모두 통확하면 user_type에 따른 중복검사 진행
-    users = CustomUser.objects.filter(email=email)
+    users = User.objects.filter(phone=phone)
     if users.count() > 0:
         return StandardErrorResponse(
             detail=ValidationErrorStrs.email_exist,
@@ -122,9 +122,9 @@ def registration(request):
             status=status.HTTP_422_UNPROCESSABLE_ENTITY,
         )
 
-    # user_type에 동일한 email이 없다면 회원 등록(create) 진행
-    user = CustomUser.objects.create(
-        email=email,
+    # user_type에 동일한 전화번호가 없다면 회원 등록(create) 진행
+    user = User.objects.create(
+        phone=phone,
         username=username,
     )
 

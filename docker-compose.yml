@@ -5,10 +5,10 @@ services:
         build:
             context: ./django
             dockerfile: Dockerfile
-        image: tonline/django
+        image: starterkit/django
         env_file:
-            - ./.env.prod 
-        command: gunicorn tonline_api.wsgi:application --bind 0.0.0.0:8000 --workers 3
+            - ./.env.prod
+        command: gunicorn starterkit_api.wsgi:application --bind 0.0.0.0:8000 --workers 3
         volumes:
             - static_volume:/home/app/static/
         expose:
