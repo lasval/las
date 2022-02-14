@@ -112,6 +112,12 @@ git clone https://해당 프로젝트 접근 가능한 빗버킷 계정@bitbucke
 해당 프로젝트는 앱 명칭 및 그에 다른 소스코드내 명칭들이 모두 startkit or starterkit_api로 되어있기 때문에
 이를 일괄로 변경시키는 스크립트를 실행하여 한번에 처리 (ex. starterkit -> gymt)
 
+스크립트 실행 방법
+
+```bash
+$ ./init-with-renaming.sh
+```
+
 -----
 
 
