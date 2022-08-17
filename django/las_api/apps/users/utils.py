@@ -1,6 +1,6 @@
 # users/utils.py
 from rest_framework import status
-from starterkit_api.utils import StandardErrorResponse
+from las_api.utils import StandardErrorResponse
 from typing import Optional, Final
 from django.contrib.auth.password_validation import (
     MinimumLengthValidator,

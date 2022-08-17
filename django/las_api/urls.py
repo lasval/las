@@ -1,4 +1,4 @@
-"""starterkit_api URL Configuration
+"""las_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -21,10 +21,10 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="starterkit API",
+        title="las_api API",
         default_version="v0.1.0",
         description="""
-        starterkit API 문서 페이지 입니다.
+        las_api API 문서 페이지 입니다.
 
         view를 생성/수정할 때, 주석영역을 적절하게 추가/수정하여 문서를 만들어주세요.
         """,

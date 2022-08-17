@@ -1,4 +1,4 @@
-# starterkit_api/utils.py (common utils)
+# las_api/utils.py (common utils)
 from rest_framework.response import Response
 from drf_yasg.inspectors import SwaggerAutoSchema
 from collections import OrderedDict

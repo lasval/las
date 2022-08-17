@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from drf_yasg.utils import swagger_auto_schema
 from datetime import datetime
-from starterkit_api.utils import StandardErrorResponse
+from las_api.utils import StandardErrorResponse
 from .utils import (
     RegistrationValidationValues,
     LoginValidationValues,

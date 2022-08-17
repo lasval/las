@@ -5,13 +5,12 @@ services:
         build:
             context: ./django
             dockerfile: Dockerfile-dev
-        image: starterkit/django-dev
-        container_name: starterkit-django-dev
+        image: las_api/django-dev
+        container_name: las_api-django-dev
         env_file:
             - ./.env.dev
-        command: python manage.py runserver 0.0.0.0:8000 
+        command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - ./django:/usr/src/app/
         ports:
             - 8000:8000
-
