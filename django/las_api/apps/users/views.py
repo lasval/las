@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.db import IntegrityError
 from .models import User
 from rest_framework import status, permissions
