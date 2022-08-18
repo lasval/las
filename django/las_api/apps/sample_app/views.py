@@ -10,7 +10,7 @@ from rest_framework.response import Response
 def sample_app_view(request):
     """
     get:
-        - sample_app_viewsdnjklfjnsdklfjskldjfklsdjlsdfsdfsd
+        - sample_app_views
     """
 
     result = {"result": "HelloWorld!!"}
