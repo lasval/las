@@ -5,7 +5,7 @@ services:
         build:
             context: ./django
             dockerfile: Dockerfile
-        image: las_api/django
+        image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
         env_file:
             - ./.env.prod
         command: gunicorn las_api.wsgi:application --bind 0.0.0.0:8000 --workers 3
@@ -17,7 +17,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile
-        image: tonline/nginx
+        image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
         volumes:
             - static_volume:/home/app/static/
         ports:
