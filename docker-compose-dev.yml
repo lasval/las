@@ -1,16 +1,16 @@
 version: "3.7"
 
 services:
-    web:
+    las_api-django-dev:
         build:
             context: ./django
             dockerfile: Dockerfile-dev
         image: las_api/django-dev
-        container_name: las_api-django-dev
         env_file:
-            - ./.env.dev
+            - ./.env
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - ./django:/usr/src/app/
         ports:
-            - 8000:8000
+            - 8000-8002:8000
+        scale: 3
