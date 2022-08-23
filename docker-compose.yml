@@ -12,7 +12,7 @@ services:
         volumes:
             - static_volume:/home/app/static/
         expose:
-            - 8000-8002:8000
+            - 8000
         scale: 3
     nginx:
         build:
