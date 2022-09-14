@@ -11,6 +11,7 @@ services:
                    gunicorn las_api.wsgi:application --bind 0.0.0.0:8000 --workers 3 -t 60"
         volumes:
             - static_volume:/home/app/static/
+        scale: 2
     nginx:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
         command: >
