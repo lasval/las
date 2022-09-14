@@ -8,25 +8,26 @@ services:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
         env_file:
             - ./.env.prod
+        command: >
+            sh -c "python manage.py migrate &&
+                   python manage.py collectstatic --no-input &&
+                   gunicorn parkpro_api.wsgi:application --bind 0.0.0.0:8000 --workers 3 -t 60"
         volumes:
             - static_volume:/home/app/static/
-        expose:
-            - 8000
-        entrypoint:
-            - /docker-entrypoint.sh
     nginx:
         build:
             context: ./nginx
             dockerfile: Dockerfile
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
+        command: >
+            sh -c "chmod +x /wait-for-it.sh &&
+                   /wait-for-it.sh django:8000 --timeout=0 -- nginx -g 'daemon off;'"
         volumes:
             - static_volume:/home/app/static/
         ports:
-            - 80:80
+            - 80
         depends_on:
             - web
-        entrypoint:
-            - /docker-entrypoint.sh
 
 volumes:
     static_volume:

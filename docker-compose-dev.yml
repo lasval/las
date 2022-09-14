@@ -8,9 +8,9 @@ services:
         image: las_api/django-dev
         env_file:
             - ./.env
-        command: python manage.py runserver 0.0.0.0:8000
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
         volumes:
             - ./django:/usr/src/app/
         ports:
-            - 8000-8002:8000
-        scale: 3
+            - 8000:8000
