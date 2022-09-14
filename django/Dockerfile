@@ -22,3 +22,6 @@ RUN pip install -r requirements.txt
 
 # Copy(add) project files
 ADD . /home/app/
+
+COPY docker-entrypoint.production.sh /docker-entrypoint.production.sh
+RUN chmod +x /docker-entrypoint.production.sh
