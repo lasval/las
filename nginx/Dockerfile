@@ -4,4 +4,4 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf /etc/nginx/conf.d
 
-COPY wait-for-it.sh etc/nginx/wait-for-it.sh
+# COPY wait-for-it.sh etc/nginx/wait-for-it.sh
