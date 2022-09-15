@@ -1,5 +1,4 @@
 FROM python:3.8.3-alpine
-MAINTAINER Ethan Soowoong Eo <ethan@gymtinc.com>
 # 파이썬 환경 변수 설정
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
