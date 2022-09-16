@@ -3,8 +3,9 @@ version: "3.7"
 services:
     web1:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
+        container_name: las-django-blue1
         env_file:
-            - ./.env.prod
+            - ./.env
         command: >
             sh -c "python manage.py migrate &&
                    python manage.py collectstatic --no-input &&
@@ -15,25 +16,16 @@ services:
             - "8000"
     web2:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
+        container_name: las-django-blue2
         env_file:
-            - ./.env.prod
+            - ./.env
         command: >
-            sh -c "python manage.py migrate &&
-                   python manage.py collectstatic --no-input &&
+            sh -c "python manage.py collectstatic --no-input &&
                    gunicorn las_api.wsgi:application --bind 0.0.0.0:8000 --workers 3 -t 60"
         volumes:
             - static_volume:/home/app/static/
         expose:
             - "8000"
-    nginx:
-        image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
-        volumes:
-            - static_volume:/home/app/static/
-        ports:
-            - 80:80
-        depends_on:
-            - web1
-            - web2
 
 volumes:
     static_volume:

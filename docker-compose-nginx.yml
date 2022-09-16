@@ -2,14 +2,10 @@ version: "3.7"
 
 services:
     nginx:
-        build:
-            context: ./nginx
-            dockerfile: Dockerfile
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
         volumes:
             - static_volume:/home/app/static/
         ports:
             - 80:80
-
 volumes:
     static_volume:
