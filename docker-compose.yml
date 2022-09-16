@@ -20,11 +20,6 @@ services:
             - static_volume:/home/app/static/
         ports:
             - 80
-        healthcheck:
-            test: [ "CMD", "nc", "-vz", "-w1", "localhost", "80" ]
-            interval: 1s
-            timeout: 1s
-            retries: 30
         depends_on:
             - web
 
