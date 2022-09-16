@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-    web1:
+    green_web1:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
         container_name: las-django-green1
         env_file:
@@ -14,7 +14,7 @@ services:
             - static_volume:/home/app/static/
         expose:
             - "8000"
-    web2:
+    green_web2:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-django:latest
         container_name: las-django-green2
         env_file:
