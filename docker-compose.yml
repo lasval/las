@@ -12,14 +12,19 @@ services:
         volumes:
             - static_volume:/home/app/static/
         scale: 2
-        expose:
-            - "8000"
+        ports:
+            - 8000-8001:8000
     nginx:
         image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
         volumes:
             - static_volume:/home/app/static/
         ports:
             - 80
+        healthcheck:
+            test: [ "CMD", "nc", "-vz", "-w1", "localhost", "80" ]
+            interval: 1s
+            timeout: 1s
+            retries: 30
         depends_on:
             - web
 
