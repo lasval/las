@@ -19,6 +19,6 @@ def sample_app_view(request):
     s.listen(1)
     port = s.getsockname()[1]
     s.close()
-    result = {"result": "HelloWorld!!", "port": port}
+    result = {"result": port}
 
     return Response(result)
