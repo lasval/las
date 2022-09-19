@@ -26,6 +26,16 @@ services:
             - static_volume:/home/app/static/
         expose:
             - "8000"
+    blue_nginx:
+        image: 623026104123.dkr.ecr.ap-northeast-2.amazonaws.com/las-nginx:latest
+        container_name: las-nginx-blue
+        volumes:
+            - static_volume:/home/app/static/
+        ports:
+            - 80:80
+        depends_on:
+            - blue_web1
+            - blue_web2
 
 volumes:
     static_volume:
